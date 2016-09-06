@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { connect } from "react-redux";
+import {bindActionCreators} from 'redux';
 import Lists from "./../reducers";
-import * as actions from "./../actions";
+import { displayList } from "./../actions";
 
 class List extends Component {
 	constructor(props) {
@@ -53,4 +54,9 @@ function mapStateToProps(state){
 	}
 }
 
-export default connect(mapStateToProps, actions)(List)
+function mapDispatchToProps(dispatch){
+	const actions = {displayList};
+	return bindActionCreators(actions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(List)
